@@ -6,7 +6,7 @@ RUN apt update && apt upgrade -y
 
 # Install necessary packages and libraries
 RUN apt install -y git libirrlicht* libeigen3* cmake-curses-gui g++ libxxf86vm* freeglut3* libx11-dev* libgl1-mesa-dev nano \
-tk-dev tcl-dev libfreetype6-dev
+tk-dev tcl-dev libfreetype6-dev libxmu-dev libxi-dev
 
 
 RUN git clone https://git.dev.opencascade.org/repos/occt.git occt --recurse-submodules
@@ -16,13 +16,14 @@ RUN git checkout V7_4_0
 RUN mkdir build
 RUN cd build && cmake -S .. -B . && make && make install
 
+WORKDIR /
 
 
 # Clone the Chrono project repository from GitHub
 RUN git clone https://github.com/projectchrono/chrono.git
 
-# Create a build directory inside the cloned repository
 RUN cd chrono && mkdir build
+
 
 # Set the working directory to the build directory
 WORKDIR /chrono/build 
