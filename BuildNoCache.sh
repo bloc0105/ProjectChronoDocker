@@ -1,2 +1,2 @@
-docker build -t chrono:debug --no-cache --build-arg="BUILD_TYPE=Debug" .
-docker build -t chrono:release --build-arg="BUILD_TYPE=Release" .
+docker build -f debug.df -t chrono:debug --no-cache .
+docker build -f release.df -t chrono:debian .
